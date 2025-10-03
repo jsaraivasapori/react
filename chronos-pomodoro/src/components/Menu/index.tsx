@@ -44,9 +44,7 @@ export function Menu() {
 
     //Função de limpeza, logia a ser implementada conforme a necessidade.
     //  Ela é executada antes do próximo useEffect ser disparado
-    return () => {
-      console.log("Olha, este componente será atualizado");
-    };
+    return () => {};
   }, [theme]); // Executa sempre que a variável de estado theme for alterada
 
   return (

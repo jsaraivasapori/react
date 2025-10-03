@@ -5,8 +5,12 @@ import { DefaultInput } from "../DefaultInput";
 import styles from "./styles.module.css";
 
 export function MainForm() {
+  function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    console.log(event);
+  }
   return (
-    <form className={styles.form} action="">
+    <form onSubmit={handleCreateNewTask} className={styles.form} action="">
       <div className={styles.formRow}>
         <DefaultInput
           labelText="oi"
