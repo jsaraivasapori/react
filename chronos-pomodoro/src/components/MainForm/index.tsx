@@ -3,11 +3,13 @@ import { Cycles } from "../Cycles";
 import { DefaultButton } from "../DefaultButton";
 import { DefaultInput } from "../DefaultInput";
 import styles from "./styles.module.css";
+import { useState } from "react";
 
 export function MainForm() {
+  const [taskName, setTaskName] = useState("");
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log(event);
+    console.log(taskName);
   }
   return (
     <form onSubmit={handleCreateNewTask} className={styles.form} action="">
@@ -17,6 +19,8 @@ export function MainForm() {
           id="meuInput"
           type="text"
           placeholder="Meu input"
+          value={taskName} //input controlado pelo estado taskName que é monitorado pelo useState
+          onChange={(e) => setTaskName(e.target.value)}
         />
       </div>
 

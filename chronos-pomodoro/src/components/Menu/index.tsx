@@ -19,9 +19,9 @@ export function Menu() {
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) {
     event.preventDefault();
-    console.log(event);
 
     setTheme((prevTheme) => {
+      // tenho acesso ao estado anterior
       const nextTheme = prevTheme === "dark" ? "light" : "dark";
       return nextTheme;
     });
