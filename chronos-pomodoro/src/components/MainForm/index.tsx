@@ -19,6 +19,13 @@ export function MainForm() {
 
   const nextCycle = getNextCycle(state.currentCycle); // pega o proximo ciclo baseado no estado atual antes de submeter o formualrio.
   const nextTypeCycle = getNextCycleType(nextCycle);
+
+  const cycleDurationMap = {
+    workTime: `${state.config.workTime} `,
+    shortBreakTime: `${state.config.shortBreakTime} `,
+    longBreakTime: `${state.config.longBreakTime} `,
+  };
+
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -69,27 +76,28 @@ export function MainForm() {
           // value={taskName} //input controlado pelo estado taskName que é monitorado pelo useState
           // onChange={(e) => setTaskName(e.target.value)}
           ref={taskNameInput}
+          disabled={state.activeTask !== null}
         />
       </div>
 
       <div className={styles.formRow}>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Próximo intervalo é de {cycleDurationMap[nextTypeCycle]} minutos</p>
       </div>
 
-      <div className={styles.formRow}>
-        <Cycles />
-      </div>
       {state.currentCycle > 0 && (
         <div className={styles.formRow}>
-          <DefaultButton
-            icon={
-              <>
-                <PlayCircleIcon />
-              </>
-            }
-          />
+          <Cycles />
         </div>
       )}
+      <div className={styles.formRow}>
+        <DefaultButton
+          icon={
+            <>
+              <PlayCircleIcon />
+            </>
+          }
+        />
+      </div>
     </form>
   );
 }
