@@ -16,7 +16,8 @@ export function MainForm() {
   const taskNameInput = useRef<HTMLInputElement>(null);
 
   //ciclos
-  const nextCycle = getNextCycle(state.currentCycle);
+
+  const nextCycle = getNextCycle(state.currentCycle); // pega o proximo ciclo baseado no estado atual antes de submeter o formualrio.
   const nextTypeCycle = getNextCycleType(nextCycle);
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -78,16 +79,17 @@ export function MainForm() {
       <div className={styles.formRow}>
         <Cycles />
       </div>
-
-      <div className={styles.formRow}>
-        <DefaultButton
-          icon={
-            <>
-              <PlayCircleIcon />
-            </>
-          }
-        />
-      </div>
+      {state.currentCycle > 0 && (
+        <div className={styles.formRow}>
+          <DefaultButton
+            icon={
+              <>
+                <PlayCircleIcon />
+              </>
+            }
+          />
+        </div>
+      )}
     </form>
   );
 }

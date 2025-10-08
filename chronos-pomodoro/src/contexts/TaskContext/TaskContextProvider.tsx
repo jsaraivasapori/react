@@ -10,6 +10,7 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
   const [state, setState] = useState(initialTaskState);
 
   useEffect(() => {
+    console.log("Estado atual...:");
     console.log(state);
   }, [state]);
 
