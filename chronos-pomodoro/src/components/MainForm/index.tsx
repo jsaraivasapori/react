@@ -65,6 +65,23 @@ export function MainForm() {
       };
     });
   }
+
+  function handleInterruptTask() {
+    setState((prevState) => {
+      return {
+        ...prevState,
+        activeTask: null,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: "00:00",
+        tasks: prevState.tasks.map((task) => {
+          if (prevState.activeTask && prevState.activeTask.id === task.id) {
+            return { ...task, interruptedDate: Date.now() };
+          }
+          return task;
+        }),
+      };
+    });
+  }
   return (
     <form onSubmit={handleCreateNewTask} className={styles.form} action="">
       <div className={styles.formRow}>
@@ -97,9 +114,11 @@ export function MainForm() {
                 <PlayCircleIcon />
               </>
             }
+            aria-label="Iniciar nova tarefa"
+            title="Iniciar nova tarefa"
+            color="green"
             type="submit"
-            aria-label="Iniciar um novo ciclo"
-            title="Iniciar um novo ciclo"
+            key="botao_submit"
           />
         )}
 
@@ -114,6 +133,8 @@ export function MainForm() {
             title="Interroper ciclo ativo"
             color="red"
             type="button"
+            key="botao_button"
+            onClick={handleInterruptTask}
           />
         )}
       </div>
